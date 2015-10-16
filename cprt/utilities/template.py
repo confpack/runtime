@@ -25,7 +25,6 @@ class TemplateMain(Command):
     args = self.argparser.parse_args(argv)
 
     verify_file_exists_or_sysexit(args.template, self.argparser)
-    verify_file_exists_or_sysexit(args.path, self.argparser)
 
     with open(args.template) as f:
       content = f.read()
