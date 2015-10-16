@@ -37,4 +37,4 @@ class TestTemplateMain(utils.RunnerTestCase):
     with open(self.template_path) as f:
       content = f.read()
 
-    self.assertTrue("400" in content)
+    self.assertEqual("server {\n  listen 80 default_server;\n  server_name _;\n  return 400;\n}", content)
