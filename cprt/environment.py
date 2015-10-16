@@ -72,8 +72,8 @@ class Environment(object):
 class SetupEnvironmentMain(object):
   def __init__(self):
     self.argparser = argparse.ArgumentParser(description="Setup the environment for confpack-runtime. Dumps config and variables into the environment for faster runs")
-    self.argparser.add_argument("config", nargs="?", default=DEFAULT_CONFIG_FILE_PATH, help="config file path")
-    self.argparser.add_argument("variables", nargs="*", default=DEFAULT_VARIABLE_FILES_PATHS, help="variable files paths")
+    self.argparser.add_argument("config", nargs="?", default=DEFAULT_CONFIG_FILE_PATH, help="config file path. default: /etc/confpack/config.json")
+    self.argparser.add_argument("variables", nargs="*", default=DEFAULT_VARIABLE_FILES_PATHS, help="variable files paths. default: /etc/confpack/variables.json /etc/confpack/secrets.json")
     self.argparser.prog = self.argparser.prog + " setup_environment"
 
   def get_help(self):

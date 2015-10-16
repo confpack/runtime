@@ -9,3 +9,7 @@ as follows:
 - Serve as a front end to apt/other package management system
 - Provide utility functions for postinst script such as templating
 
+Setup
+-----
+
+In the [confpack/vagrant](http://github.com/confpack/vagrant) environment, clone with `--recursive` flag on.
