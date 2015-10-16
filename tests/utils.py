@@ -1,12 +1,23 @@
+# All tests should import this module because we set the path here.
+
 import getpass
 import os.path
+import unittest
+import sys
 
 TEST_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
-TEST_CONFIG_PATH = os.path.join(TEST_DIR_PATH, "testdata", "config.json")
+TEST_DATADIR_PATH = os.path.join(TEST_DIR_PATH, "testdata")
+
+VENDOR_DIR = os.path.join(os.path.dirname(TEST_DIR_PATH), "vendor")
+sys.path.append(VENDOR_DIR)
+
+TEST_CONFIG_PATH = os.path.join(TEST_DATADIR_PATH, "config.json")
 TEST_VARIABLES_PATHS = [
-  os.path.join(TEST_DIR_PATH, "testdata", "variables.json"),
-  os.path.join(TEST_DIR_PATH, "testdata", "secrets.json"),
+  os.path.join(TEST_DATADIR_PATH, "variables.json"),
+  os.path.join(TEST_DATADIR_PATH, "secrets.json"),
 ]
+
+TEST_TEMPLATE_PATH = os.path.join(TEST_DATADIR_PATH, "nginx.conf.j2")
 
 EXPECTED_TEST_CONFIG = {
   "option1": "1",
@@ -26,3 +37,12 @@ def on_ci():
 
 def on_vagrant():
   return getpass.getuser() == "vagrant"
+
+
+class RunnerTestCase(unittest.TestCase):
+  def memorize_environ(self):
+    self.old_environ = dict(os.environ)
+
+  def restore_environ(self):
+    os.environ.clear()
+    os.environ.update(self.old_environ)

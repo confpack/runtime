@@ -9,13 +9,12 @@ from cprt import environment
 from . import utils
 
 
-class TestEnvironment(unittest.TestCase):
+class TestEnvironment(utils.RunnerTestCase):
   def setUp(self):
-    self.old_environ = dict(os.environ)
+    self.memorize_environ()
 
   def tearDown(self):
-    os.environ.clear()
-    os.environ.update(self.old_environ)
+    self.restore_environ()
 
   def test_from_file(self):
     env = environment.Environment.from_file(utils.TEST_CONFIG_PATH, utils.TEST_VARIABLES_PATHS)
