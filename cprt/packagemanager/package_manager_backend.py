@@ -1,5 +1,6 @@
-
 class PackageManagerBackend(object):
+  """PackageManagerBackend base class and public method definition
+  """
   def __init__(self):
     pass
 
@@ -41,4 +42,3 @@ class PackageManagerBackend(object):
     If none is provided, nothing happens.
     """
     raise NotImplementedError
-
