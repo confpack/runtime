@@ -10,3 +10,5 @@ are minimal deviations from distribution to distribution.
 
 To update all the vendored library, check out the Makefile
 
+Licenses are included in `licenses/`
+
