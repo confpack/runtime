@@ -1,4 +1,5 @@
 # All tests should import this module because we set the path here.
+# This module should be the first thing imported by tests!
 
 import getpass
 import os.path

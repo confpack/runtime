@@ -1,12 +1,12 @@
 from __future__ import absolute_import
 
+from . import utils
+
 import json
 import os
 import unittest
 
 from cprt import environment
-
-from . import utils
 
 
 class TestEnvironment(utils.RunnerTestCase):

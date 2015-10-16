@@ -1,12 +1,11 @@
 from __future__ import absolute_import
 
-import unittest
+from .. import utils
+
 import os
 import tempfile
 
 from cprt.utilities import template
-
-from .. import utils
 
 
 class TestTemplateMain(utils.RunnerTestCase):
