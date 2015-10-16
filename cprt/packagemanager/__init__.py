@@ -1,5 +1,7 @@
+from cpcommon import Command
 
-class PmMain(object):
+
+class PmMain(Command):
   def __init__(self):
     pass
 

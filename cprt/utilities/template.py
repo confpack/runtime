@@ -5,10 +5,10 @@ import argparse
 import jinja2
 
 from .. import environment
-from ..helpers import verify_file_exists_or_sysexit
+from cpcommon import verify_file_exists_or_sysexit, Command
 
 
-class TemplateMain(object):
+class TemplateMain(Command):
   def __init__(self):
     self.argparser = argparse.ArgumentParser(description="Processes a template file and replaces it all values filled out.")
     self.argparser.add_argument("template", help="The path to the template file. This file is used as the first template file.")

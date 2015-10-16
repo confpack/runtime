@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 
-from .helpers import verify_file_exists_or_sysexit
+from cpcommon import verify_file_exists_or_sysexit, Command
 
 
 CONFPACK_VAR_PREFIX = "CONFPACK_VAR_"
@@ -69,7 +69,7 @@ class Environment(object):
     os.environ[CONFPACK_USE_ENV] = "1"
 
 
-class SetupEnvironmentMain(object):
+class SetupEnvironmentMain(Command):
   def __init__(self):
     self.argparser = argparse.ArgumentParser(description="Setup the environment for confpack-runtime. Dumps config and variables into the environment for faster runs")
     self.argparser.add_argument("config", nargs="?", default=DEFAULT_CONFIG_FILE_PATH, help="config file path. default: /etc/confpack/config.json")
