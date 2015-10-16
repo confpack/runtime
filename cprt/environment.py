@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 
-from ..helpers import verify_file_exists_or_sysexit
+from .helpers import verify_file_exists_or_sysexit
 
 
 CONFPACK_VAR_PREFIX = "CONFPACK_VAR_"
@@ -26,12 +26,12 @@ class Environment(object):
     config = {}
     variables = {}
     for key in os.environ:
-      if key.starts_with(CONFPACK_VAR_PREFIX):
+      if key.startswith(CONFPACK_VAR_PREFIX):
         varkey = key[len(CONFPACK_VAR_PREFIX):].lower()
-        variables[varkey] = os.environ[key]
-      elif key.starts_with(CONFPACK_CONFIG_PREFIX):
-        confkey = key[len(CONFPACK_CONFIG_PREFIX):]
-        config[confkey] = os.environ[key]
+        variables[varkey] = json.loads(os.environ[key])
+      elif key.startswith(CONFPACK_CONFIG_PREFIX):
+        confkey = key[len(CONFPACK_CONFIG_PREFIX):].lower()
+        config[confkey] = json.loads(os.environ[key])
 
     return Environment(config, variables)
 
@@ -52,14 +52,19 @@ class Environment(object):
 
   def __init__(self, config, variables):
     self.config = config
+    self.variables = self.discover_system_facts()
     self.variables = variables
+
+  def discover_system_facts(self):
+    # TODO: not yet implemented.
+    return {}
 
   def dump_to_environment(self):
     for key, value in self.config.iteritems():
-      os.environ[CONFPACK_CONFIG_PREFIX + key.upper()] = value
+      os.environ[CONFPACK_CONFIG_PREFIX + key.upper()] = json.dumps(value)
 
     for key, value in self.variables.iteritems():
-      os.environ[CONFPACK_VAR_PREFIX + key.upper()] = value
+      os.environ[CONFPACK_VAR_PREFIX + key.upper()] = json.dumps(value)
 
     os.environ[CONFPACK_USE_ENV] = "1"
 

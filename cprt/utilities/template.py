@@ -34,7 +34,7 @@ class TemplateMain(object):
     env = environment.get_environment()
     content = template.render(**env.variables)
 
-    with open(self._path, "w") as f:
+    with open(args.path, "w") as f:
       f.write(content)
 
     return 0
