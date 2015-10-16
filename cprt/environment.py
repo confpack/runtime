@@ -90,3 +90,5 @@ class SetupEnvironmentMain(object):
       verify_file_exists_or_sysexit(vfn, self.argparser)
 
     Environment.from_file(args.config, args.variables).dump_to_environment()
+
+    return 0

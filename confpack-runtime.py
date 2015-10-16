@@ -19,7 +19,7 @@ def main(argv):
   cmdline = Cmdline(SCRIPT_NAMES)
   cmdline.register_command(cprt.SetupEnvironmentMain)
   cmdline.register_command(cprt.TemplateMain)
-  cmdline.main(argv)
+  return cmdline.main(argv)
 
 
 if __name__ == "__main__":
